@@ -6,22 +6,22 @@ import type { Variants } from 'framer-motion';
 
 // Smooth spring transition
 export const spring = {
-  type: 'spring',
+  type: 'spring' as const,
   damping: 20,
   stiffness: 100,
 };
 
 // Quick easing transition
 export const ease = {
-  type: 'tween',
-  ease: 'easeInOut',
+  type: 'tween' as const,
+  ease: 'easeInOut' as const,
   duration: 0.3,
 };
 
 // Slow smooth transition
 export const smooth = {
-  type: 'tween',
-  ease: 'easeOut',
+  type: 'tween' as const,
+  ease: 'easeOut' as const,
   duration: 0.6,
 };
 
@@ -83,7 +83,7 @@ export const staggerItem: Variants = {
  */
 export const hoverScale = {
   scale: 1.05,
-  transition: { type: 'spring', stiffness: 300, damping: 20 },
+  transition: { type: 'spring' as const, stiffness: 300, damping: 20 },
 };
 
 /**
