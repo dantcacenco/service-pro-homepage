@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
+/**
+ * Get Groq client instance (lazy initialization for Vercel builds)
+ */
+function getGroqClient() {
+  return new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+  });
+}
 
 interface RankedTemplate {
   id: string;
@@ -166,6 +171,7 @@ Return ONLY valid JSON in this exact format:
 }`;
 
   try {
+    const groq = getGroqClient();
     const completion = await groq.chat.completions.create({
       messages: [
         {
@@ -312,6 +318,7 @@ Return ONLY valid JSON in this exact format (no markdown, no code blocks):
 }`;
 
   try {
+    const groq = getGroqClient();
     const completion = await groq.chat.completions.create({
       messages: [
         {
