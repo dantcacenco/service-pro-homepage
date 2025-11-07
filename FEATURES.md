@@ -47,18 +47,23 @@ This document outlines the major features to be implemented for the Service Pro 
 
 **Three Integrated Solutions:**
 
-1. **CompanyCam+ (Live Interactive Demo)**
-   - Purpose: Professional photo documentation and project tracking
+1. **CompanyCam+ (Mini Demo in Card + Full Page Demo)**
+   - Purpose: Professional photo documentation showing project progress over time
+   - Key Innovation: Multiple photos (5, 10+) at same location with transparent overlay alignment
    - Features:
-     - Before/after comparison slider with sample project images
-     - Automatic photo organization by project
+     - Timeline slider showing photos from different dates at same location
+     - Transparent overlay for perfect photo alignment across time
+     - Snap-to-date functionality for easy navigation
      - GPS and timestamp metadata on every photo
-     - Share progress updates with customers instantly
-     - Professional presentation that justifies higher pricing
-   - Implementation: Full working demo integrated from existing codebase
-   - Use Case: "Show homeowners exactly what you're doing, when you're doing it"
+     - Solves 100-500+ photo chaos problem - organized by location and time
+     - Quality control: Identify issues (improper taping, incomplete caulking, etc.)
+     - Share progress time-lapse with customers
+   - Mini Demo: Inside card dropdown - visual demo of timeline slider (no upload, just showcase)
+   - Full Demo: Separate page showing complete functionality
+   - Use Case: "Show the hidden quality work that justifies your premium pricing"
+   - Real-world example: Window installation waterproofing process documentation
 
-2. **ServicePro+ Dashboard (Showcased/Discussed)**
+2. **ServicePro+ Dashboard (Mini Demo in Card + Full Page Demo)**
    - Purpose: Complete workflow management from first contact to final payment
    - Features:
      - Unified proposal → estimate → invoice pipeline
@@ -66,11 +71,12 @@ This document outlines the major features to be implemented for the Service Pro 
      - Project timeline tracking
      - Customer communication history
      - Payment tracking and reminders
-   - Implementation: Feature showcase with screenshots/descriptions, not full demo
+   - Mini Demo: Inside card dropdown - simplified visual explanation of workflow
+   - Full Demo: Separate page showing complete dashboard functionality
    - Use Case: "One place for everything - from quote to cash"
    - Real-world validation: "Already helping a local HVAC business streamline their flow from proposal to invoicing, keeping communication between projects and 10+ employees organized"
 
-3. **AI-Powered Email Templates (Showcased AND Live Demo)**
+3. **AI-Powered Email Templates (Mini Demo in Card + Full Page Demo)**
    - Purpose: Professional, branded communication with customers
    - Features:
      - Appointment confirmations with service details
@@ -78,16 +84,19 @@ This document outlines the major features to be implemented for the Service Pro 
      - Progress update notifications
      - Payment reminder emails
      - Follow-up and review request emails
-   - Implementation: Feature showcase with "Try It Live" button linking to existing /email-builder page
+   - Mini Demo: Inside card dropdown - visual examples of email templates
+   - Full Demo: Existing /email-builder page with complete template creation
    - Use Case: "Look professional, get paid faster, get more 5-star reviews"
 
 **Section Structure:**
 - **Industry Selector** - 4 tabs: HVAC, Electrical, Plumbing, General Contractor
 - **Pain Point Headline** - Speaks directly to each industry's struggles
-- **Three Solution Cards** - CompanyCam+ (interactive demo), ServicePro+ (showcase), Email Templates (showcase + live demo link)
-- **CompanyCam+ Demo Area** - Live interactive photo comparison demo
-- **Email Templates Preview** - Mini showcase with "Try It Live" button → /email-builder
-- **Visual Flow Diagram** - Shows how all three solutions work together
+- **Three Solution Cards** - Each with dropdown mini demos inside
+  - CompanyCam+: Timeline slider demo (no upload, visual only)
+  - ServicePro+: Simplified workflow explanation
+  - Email Templates: Visual examples showcase
+- **No Badges** - Remove "Interactive Demo" and "Live Demo Available" badges
+- **Full Demos** - Separate pages for complete functionality (to be created)
 - **CTA Button** - "Start Streamlining Your Business" → leads to consultation
 
 **Animation Requirements:**

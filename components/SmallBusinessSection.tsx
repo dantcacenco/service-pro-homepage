@@ -4,11 +4,80 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import CompanyCamDemo from './SmallBusinessSection/CompanyCamDemo';
-import ServiceProShowcase from './SmallBusinessSection/ServiceProShowcase';
-import EmailTemplatesShowcase from './SmallBusinessSection/EmailTemplatesShowcase';
+import CompanyCamMiniDemo from './SmallBusinessSection/CompanyCamMiniDemo';
+import ServiceProMiniDemo from './SmallBusinessSection/ServiceProMiniDemo';
+import EmailTemplatesMiniDemo from './SmallBusinessSection/EmailTemplatesMiniDemo';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Solution Card Component with Dropdown
+interface SolutionCardProps {
+  title: string;
+  description: string;
+  features: string[];
+  delay: number;
+  children: React.ReactNode;
+}
+
+function SolutionCard({ title, description, features, delay, children }: SolutionCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all hover:shadow-2xl"
+    >
+      <div className="mb-4">
+        <h4 className="text-2xl font-bold text-text-dark">{title}</h4>
+      </div>
+      <p className="mb-6 text-text-light">{description}</p>
+      <div className="mb-6 space-y-2 text-sm text-text-light">
+        {features.map((feature, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <span className="text-primary">✓</span>
+            <span>{feature}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* See Demo Button */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="group flex w-full items-center justify-between rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 px-4 py-3 font-semibold text-primary transition-all hover:from-primary/20 hover:to-accent/20"
+      >
+        <span>{isExpanded ? 'Hide Demo' : 'See Demo'}</span>
+        <motion.svg
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </motion.svg>
+      </button>
+
+      {/* Collapsible Demo Area */}
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="mt-6 rounded-xl bg-secondary/50 p-4">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 interface Industry {
   id: string;
@@ -177,112 +246,46 @@ export default function SmallBusinessSection() {
         {/* Three Solution Cards */}
         <div className="mb-16 grid gap-8 md:grid-cols-3">
           {/* CompanyCam+ Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all hover:shadow-2xl"
+          <SolutionCard
+            title="CompanyCam+"
+            description="Show the hidden quality work that justifies your premium pricing. Track 5, 10+ photos per location over time, perfectly aligned."
+            features={[
+              'Timeline slider with photos from different dates',
+              'Transparent overlay for perfect alignment',
+              'Solves 100-500+ photo chaos problem',
+            ]}
+            delay={0.1}
           >
-            <div className="mb-4 flex items-start justify-between">
-              <h4 className="text-2xl font-bold text-text-dark">CompanyCam+</h4>
-              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                Interactive Demo
-              </span>
-            </div>
-            <p className="mb-6 text-text-light">
-              Professional photo documentation that shows homeowners exactly what you're doing, when you're doing it. No more "he said, she said."
-            </p>
-            <div className="mb-4 space-y-2 text-sm text-text-light">
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Before/after comparison slider</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>GPS & timestamp on every photo</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Share updates with customers instantly</span>
-              </div>
-            </div>
-          </motion.div>
+            <CompanyCamMiniDemo activeIndustry={activeIndustry} />
+          </SolutionCard>
 
           {/* ServicePro+ Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all hover:shadow-2xl"
+          <SolutionCard
+            title="ServicePro+ Dashboard"
+            description="One place for everything - from quote to cash. Already helping a local HVAC business keep 10+ employees organized."
+            features={[
+              'Proposal → invoice pipeline',
+              'Employee coordination hub',
+              'Project & payment tracking',
+            ]}
+            delay={0.2}
           >
-            <div className="mb-4">
-              <h4 className="text-2xl font-bold text-text-dark">ServicePro+ Dashboard</h4>
-            </div>
-            <p className="mb-6 text-text-light">
-              One place for everything - from quote to cash. Already helping a local HVAC business keep 10+ employees organized.
-            </p>
-            <div className="mb-4 space-y-2 text-sm text-text-light">
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Proposal → invoice pipeline</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Employee coordination hub</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Project & payment tracking</span>
-              </div>
-            </div>
-          </motion.div>
+            <ServiceProMiniDemo />
+          </SolutionCard>
 
           {/* Email Templates Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all hover:shadow-2xl"
+          <SolutionCard
+            title="AI-Powered Email Templates"
+            description="Look professional, get paid faster, get more 5-star reviews. Branded emails that match your business."
+            features={[
+              'Appointment confirmations',
+              'Estimates & invoices',
+              'Payment reminders & follow-ups',
+            ]}
+            delay={0.3}
           >
-            <div className="mb-4 flex items-start justify-between">
-              <h4 className="text-2xl font-bold text-text-dark">Email Templates</h4>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                Live Demo Available
-              </span>
-            </div>
-            <p className="mb-6 text-text-light">
-              Look professional, get paid faster, get more 5-star reviews. Branded emails that match your business.
-            </p>
-            <div className="mb-4 space-y-2 text-sm text-text-light">
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Appointment confirmations</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Estimates & invoices</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Payment reminders & follow-ups</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Demo Areas */}
-        <div className="space-y-16">
-          {/* CompanyCam+ Demo */}
-          <CompanyCamDemo activeIndustry={activeIndustry} />
-
-          {/* ServicePro+ Showcase */}
-          <ServiceProShowcase />
-
-          {/* Email Templates Showcase */}
-          <EmailTemplatesShowcase activeIndustry={activeIndustry} />
+            <EmailTemplatesMiniDemo activeIndustry={activeIndustry} />
+          </SolutionCard>
         </div>
 
         {/* CTA Button */}

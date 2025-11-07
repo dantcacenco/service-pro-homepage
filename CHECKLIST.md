@@ -78,60 +78,58 @@ This checklist breaks down all features into small, actionable implementation st
 - [ ] Implement smooth tab switching animation (Framer Motion)
 - [ ] Add GSAP scroll-triggered entrance animations
 
-### CompanyCam+ Interactive Demo Integration
-- [ ] Create `components/SmallBusinessSection/CompanyCamDemo.tsx`
-- [ ] Source or create sample project photos (before/after):
-  - [ ] HVAC: AC unit replacement, ductwork installation
-  - [ ] Electrical: Panel upgrade, outlet installation
-  - [ ] Plumbing: Water heater replacement, pipe repair
-  - [ ] General Contractor: Kitchen remodel, bathroom renovation
-- [ ] Implement before/after comparison slider component
-- [ ] Add drag interaction for slider (desktop)
-- [ ] Add touch/swipe gestures for slider (mobile)
-- [ ] Display photo metadata (timestamp, GPS coordinates - simulated)
-- [ ] Add smooth transitions when switching industries
-- [ ] Implement "Share with customer" button (visual only)
-- [ ] Add professional overlay UI (project name, contractor info)
-- [ ] Optimize images for web (WebP, lazy loading)
+### CompanyCam+ Mini Demo (Inside Card Dropdown)
+- [ ] Create `components/SmallBusinessSection/CompanyCamMiniDemo.tsx`
+- [ ] **CORRECT CONCEPT**: Multiple photos over time at same location (NOT just before/after)
+- [ ] Design timeline slider at bottom showing different dates
+- [ ] Show 5+ photos from same location taken on different dates
+- [ ] Implement snap-to-date functionality
+- [ ] Visual indicator of transparent overlay alignment concept
+- [ ] Display project progress over time (e.g., window waterproofing stages)
+- [ ] Show date/time stamps for each photo in timeline
+- [ ] Sample data for each industry:
+  - [ ] HVAC: AC installation stages (prep, ductwork, unit, testing, complete)
+  - [ ] Electrical: Panel upgrade stages (disconnect, remove old, install new, wire, test)
+  - [ ] Plumbing: Water heater stages (drain old, remove, install new, connect, test)
+  - [ ] Contractor: Kitchen remodel stages (demo, framing, drywall, finish, complete)
+- [ ] Add subtle animation showing value of aligned photos
+- [ ] Keep it lightweight - no upload functionality
+- [ ] Make responsive for mobile
 
-### ServicePro+ Dashboard Showcase
-- [ ] Create `components/SmallBusinessSection/ServiceProShowcase.tsx`
-- [ ] Design workflow diagram showing proposal → estimate → invoice → payment
-- [ ] Create animated flow visualization (GSAP timeline)
-- [ ] Write copy highlighting key features:
-  - [ ] "Unified proposal → estimate → invoice pipeline"
-  - [ ] "Employee task assignment and communication hub"
-  - [ ] "Project timeline tracking"
-  - [ ] "Customer communication history"
-  - [ ] "Payment tracking and reminders"
-- [ ] Add real-world validation callout:
-  - [ ] "Already helping a local HVAC business streamline their flow"
-  - [ ] "Keeps communication between projects and 10+ employees organized"
-- [ ] Create feature cards with icons
-- [ ] Add hover effects for feature cards (desktop)
-- [ ] Make responsive for mobile (stack vertically)
+### CompanyCam+ Full Page Demo (Future Task)
+- [ ] Create separate `/company-cam-plus-demo` page
+- [ ] Implement full functionality with photo upload capability
+- [ ] Add overlay alignment feature visualization
+- [ ] Full timeline navigation and management
 
-### Email Templates Showcase AND Live Demo
-- [ ] Create `components/SmallBusinessSection/EmailTemplatesShowcase.tsx`
-- [ ] Design email template preview cards
-- [ ] Show 3-5 industry-specific email examples:
-  - [ ] Appointment confirmation with service details
-  - [ ] Estimate/proposal delivery
-  - [ ] Progress update notification
-  - [ ] Payment reminder (friendly but firm)
-  - [ ] Follow-up and review request
-- [ ] Create mini mockups of each email type
-- [ ] Add carousel or grid layout for email previews
-- [ ] Write compelling copy: "Look professional, get paid faster, get more 5-star reviews"
-- [ ] Add prominent "Try It Live" button linking to /email-builder page
-- [ ] Add "Live Demo Available" badge to Email Templates card
+### ServicePro+ Mini Demo (Inside Card Dropdown)
+- [ ] Create `components/SmallBusinessSection/ServiceProMiniDemo.tsx`
+- [ ] Simplified visual workflow explanation
+- [ ] Mini interactive diagram or animation
+- [ ] Show key touchpoints: Quote → Invoice → Payment
+- [ ] Employee coordination visualization
+- [ ] Keep it simple and focused
+- [ ] Make responsive for mobile
+
+### ServicePro+ Full Page Demo (Future Task)
+- [ ] Create separate `/service-pro-plus-demo` page
+- [ ] Show full dashboard interface
+- [ ] Interactive workflow demonstration
+
+### Email Templates Mini Demo (Inside Card Dropdown)
+- [ ] Create `components/SmallBusinessSection/EmailTemplatesMiniDemo.tsx`
+- [ ] Show 2-3 industry-specific email examples (mini versions)
+- [ ] Simple visual mockups (appointment, estimate, payment)
+- [ ] Link to full demo at /email-builder
+- [ ] Keep it lightweight and focused
 - [ ] Make responsive for mobile
 
 ### Section Integration and Polish
-- [ ] Integrate all three components into SmallBusinessSection
-- [ ] Create three-card layout for solutions (CompanyCam+, ServicePro+, Email Templates)
-- [ ] Add "Interactive Demo" badge to CompanyCam+ card
-- [ ] Add "Live Demo Available" badge to Email Templates card
+- [ ] **REMOVE BADGES**: Delete "Interactive Demo" and "Live Demo Available" from cards
+- [ ] Add dropdown/collapsible functionality to each card
+- [ ] Integrate mini demo components inside card dropdowns
+- [ ] Smooth dropdown animations (expand/collapse)
+- [ ] Add "See Demo" or "View Details" button to trigger dropdown
 - [ ] Add smooth scroll animations for section entrance
 - [ ] Implement industry-specific color accents:
   - [ ] HVAC: Cool blue tones
