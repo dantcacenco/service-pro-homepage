@@ -2,6 +2,26 @@
 
 A high-end, mobile-first landing page showcasing custom business automation solutions for local service businesses (HVAC, contractors, landscaping, etc.) with Apple-level scroll animations and interactive micro-service demos.
 
+## ⚠️ DOCUMENTATION RULES
+
+**CRITICAL:** This project uses ONLY THREE documentation files:
+
+1. **README.md** (this file) - Project overview, setup, and structure
+2. **FEATURES.md** - Feature specifications and requirements
+3. **CHECKLIST.md** - Implementation tasks and progress tracking
+
+**DO NOT CREATE:**
+- ❌ Summary files (e.g., `SUMMARY.md`, `NOTES.md`)
+- ❌ Separate feature docs (e.g., `EMAIL_BUILDER_README.md`, `API_DOCS.md`)
+- ❌ Quick start guides (e.g., `QUICK_START.md`, `SETUP.md`)
+- ❌ Test result files (unless temporary during testing, then DELETE immediately after)
+- ❌ Design documents (e.g., `DESIGN.md`, `ARCHITECTURE.md`)
+- ❌ Any other markdown files
+
+**ALL information belongs in one of the three main files above.**
+
+---
+
 ## Project Scope
 
 This is a Next.js 14+ application featuring:
@@ -9,17 +29,18 @@ This is a Next.js 14+ application featuring:
 - **Interactive AI-powered email template builder** that learns user preferences
 - **Live micro-service demonstrations** (email reminders, photo progress tracking, chatbot)
 - **Mobile-first responsive design** with 60fps animations
-- **Claude API integration** for intelligent template generation
+- **Groq AI integration** (free tier) for intelligent template generation
+- **Local HIPAA-compliant AI** solutions for regulated industries
 
 ## Tech Stack
 
-- **Framework:** Next.js 14+ (App Router)
+- **Framework:** Next.js 16.0.1 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
 - **Animations:** GSAP + ScrollTrigger, Framer Motion
-- **Email:** React Email, Resend/SendGrid
-- **AI:** Anthropic Claude API
-- **Interactions:** @dnd-kit/core for drag-and-drop ranking
+- **Email:** React Email, Resend
+- **AI:** Groq (Llama 3.1 70B - free tier, 300+ tokens/sec)
+- **Interactions:** @dnd-kit/core for template interactions
 
 ## Project Workflow
 
@@ -45,45 +66,48 @@ service-pro-homepage/
 │
 ├── app/
 │   ├── page.tsx                 # Main landing page
-│   ├── layout.tsx               # Root layout
-│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout (includes Calendly widget)
+│   ├── globals.css              # Global styles with custom design tokens
 │   │
-│   ├── email-builder/           # Email template builder demo page
+│   ├── email-builder/           # Email template builder page
 │   │   └── page.tsx
 │   │
 │   └── api/                     # API routes
 │       ├── generate-templates/
-│       │   └── route.ts         # Claude AI template generation
+│       │   └── route.ts         # Groq AI template generation
+│       ├── edit-template/
+│       │   └── route.ts         # Natural language template editing
 │       └── send-test-email/
-│           └── route.ts         # Email sending functionality
+│           └── route.ts         # Resend email sending
 │
 ├── components/
-│   ├── Hero.tsx                 # Hero section with parallax
-│   ├── ScrollAnimationSection.tsx  # Reusable scroll-pinned sections
+│   ├── Hero.tsx                 # Hero section with parallax effects
+│   ├── ScrollAnimationSection.tsx  # Scroll-pinned email demo section
+│   ├── LocalAISection.tsx       # Local HIPAA-compliant AI showcase
 │   │
 │   ├── EmailTemplateBuilder/   # Email builder components
-│   │   ├── RankingInterface.tsx     # Drag-to-rank templates
-│   │   ├── BusinessInfoForm.tsx     # Business details collection
-│   │   └── TemplatePreview.tsx      # Preview & editing interface
+│   │   ├── RankingInterface.tsx     # Template rating (1-10 scale)
+│   │   ├── BusinessInfoForm.tsx     # Business details with industry fields
+│   │   └── TemplatePreview.tsx      # Preview & natural language editing
 │   │
-│   └── MicroServiceDemos/       # Additional demo components
+│   └── MicroServiceDemos/       # Additional demo components (future)
 │       ├── EmailReminderDemo.tsx
 │       ├── PhotoProgressDemo.tsx
 │       └── ChatbotDemo.tsx
 │
 ├── lib/
-│   ├── email-templates/         # Pre-made template examples (10 templates)
-│   │   ├── template-01.tsx
-│   │   ├── template-02.tsx
-│   │   └── ...
+│   ├── email-templates/         # 8 design philosophy templates (20 total)
+│   │   ├── index.ts             # Template exports and utilities
+│   │   ├── template-01-measurements-report.ts
+│   │   ├── template-02-minimalist-modern.ts
+│   │   └── ... (templates 03-20)
 │   │
 │   ├── animations/              # GSAP animation utilities
 │   │   ├── scroll-animations.ts
 │   │   └── transitions.ts
 │   │
 │   └── utils/                   # Helper functions
-│       ├── claude-api.ts
-│       └── email-sender.ts
+│       └── (to be added as needed)
 │
 └── public/
     └── images/                  # Static assets
@@ -96,10 +120,16 @@ service-pro-homepage/
 Create a `.env.local` file with:
 
 ```env
-ANTHROPIC_API_KEY=your_claude_api_key
-RESEND_API_KEY=your_resend_api_key
+GROQ_API_KEY=your_groq_api_key_here
+RESEND_API_KEY=your_resend_api_key_here
+ANTHROPIC_API_KEY=your_claude_api_key_here  # Optional, not currently used
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+**Get API Keys:**
+- **Groq:** https://console.groq.com (free tier: 14,400 requests/day)
+- **Resend:** https://resend.com (free tier: 100 emails/day)
+- **Calendly:** https://calendly.com/volk_productions/new-meeting (for consultations)
 
 ## Development
 
