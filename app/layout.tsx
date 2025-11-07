@@ -31,10 +31,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.onload = function() {
+                if (window.Calendly) {
+                  Calendly.initBadgeWidget({
+                    url: 'https://calendly.com/volk_productions/new-meeting',
+                    text: 'Schedule a Free Consultation',
+                    color: '#3B82F6',
+                    textColor: '#ffffff',
+                    branding: true
+                  });
+                }
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

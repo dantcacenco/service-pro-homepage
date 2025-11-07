@@ -219,7 +219,7 @@ export default function LocalAISection() {
                 className="flex flex-col items-center"
               >
                 <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-primary shadow-2xl">
-                  <span className="text-6xl">🧠</span>
+                  <span className="text-6xl">🗄️</span>
                 </div>
                 <p className="text-center font-semibold text-text-dark">Local AI</p>
                 <p className="text-sm text-text-light">State-of-the-Art LLM</p>
@@ -348,11 +348,16 @@ export default function LocalAISection() {
             Ready to Keep Your Data Private?
           </h3>
           <p className="mb-8 text-lg text-text-light">
-            Schedule a demo to see how local AI can transform your operations
+            Schedule a consultation to see how local AI can transform your operations
           </p>
-          <button className="rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl">
-            Schedule a Demo
-          </button>
+          <a
+            href="https://calendly.com/volk_productions/new-meeting"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+          >
+            Schedule a Consultation
+          </a>
         </motion.div>
       </div>
     </section>

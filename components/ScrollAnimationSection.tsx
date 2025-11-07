@@ -33,9 +33,9 @@ export default function ScrollAnimationSection({
         pinSpacing: true,
       });
 
-      // Rotate mockup based on scroll (0 to 360 degrees)
+      // Rotate mockup based on scroll (0 to 180 degrees)
       gsap.to(mockupRef.current, {
-        rotateY: 360,
+        rotateY: 180,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
