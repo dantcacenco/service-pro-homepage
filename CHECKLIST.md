@@ -66,37 +66,35 @@ This checklist breaks down all features into small, actionable implementation st
 
 ---
 
-## Phase 2: Email Template Builder - Frontend
+## Phase 2: Email Template Builder - Frontend **REDESIGNED**
 
-### Create 10 Pre-Designed Email Templates
-- [ ] Create `lib/email-templates/` directory
-- [ ] Design template 1: Minimalist modern (lots of white space)
-- [ ] Design template 2: Bold and colorful (vibrant colors)
-- [ ] Design template 3: Corporate professional (blue/gray palette)
-- [ ] Design template 4: Image-focused (large hero image)
-- [ ] Design template 5: Split layout (text + image columns)
-- [ ] Design template 6: Dark mode design
-- [ ] Design template 7: Playful/friendly (rounded corners, soft colors)
-- [ ] Design template 8: Luxury/premium (gold accents, serif fonts)
-- [ ] Design template 9: Newsletter style (multi-section)
-- [ ] Design template 10: Promotional (sale/discount focused)
-- [ ] Test all templates in Litmus or Email on Acid
+### Create 8 Design Philosophy Templates
+- [ ] Create/Update `lib/email-templates/` directory
+- [ ] Design Philosophy 1: **Luxury/Premium** - Dark bg, gold accents, elegant serif fonts
+- [ ] Design Philosophy 2: **Tech/Modern** - White, bold sans-serif, single accent color
+- [ ] Design Philosophy 3: **Futuristic/AI** - Gradients, neon accents, floating elements
+- [ ] Design Philosophy 4: **Warm/Friendly** - Warm colors, rounded corners, approachable fonts
+- [ ] Design Philosophy 5: **Professional/Corporate** - Navy blue, structured, formal layout
+- [ ] Design Philosophy 6: **Bold/Creative** - Bright colors, asymmetric layouts, large imagery
+- [ ] Design Philosophy 7: **Minimalist/Zen** - Whitespace, monochromatic, subtle accents
+- [ ] Design Philosophy 8: **Data-Driven/Analytical** - Charts, tables, structured information
+- [ ] Test all templates in email clients (Gmail, Outlook, Apple Mail)
 - [ ] Ensure inline CSS in all templates
-- [ ] Create thumbnail previews for each template
+- [ ] Create larger thumbnail previews (300x400px minimum)
 
-### Ranking Interface
-- [ ] Create `components/EmailTemplateBuilder/RankingInterface.tsx`
-- [ ] Display grid of 10 email template thumbnails
-- [ ] Add ranking numbers (1-10) to each template
-- [ ] Implement drag-and-drop with @dnd-kit/sortable
-- [ ] Add smooth reordering animations
-- [ ] Show visual feedback on drag (lift effect, shadow)
-- [ ] Highlight top-ranked templates (glow effect)
+### Rating Interface (NOT Ranking)
+- [ ] Update `components/EmailTemplateBuilder/RankingInterface.tsx` to `RatingInterface.tsx`
+- [ ] Display grid of 8 template cards with larger thumbnails
+- [ ] Add 1-10 rating system (stars or slider) for each template
+- [ ] Implement modal component for full-size preview
+- [ ] Show desktop + mobile preview side-by-side in modal
+- [ ] **Remove drag-and-drop** (no longer needed)
+- [ ] Add smooth animations for rating changes
 - [ ] Add progress indicator component
-- [ ] Implement "analyzing preferences" animation
+- [ ] Implement "analyzing style preferences" animation
 - [ ] Add keyboard navigation for accessibility
 - [ ] Make responsive for mobile (touch-friendly)
-- [ ] Store ranking state in React state
+- [ ] Store ratings in React state (not rankings)
 
 ### Business Info Form
 - [ ] Create `components/EmailTemplateBuilder/BusinessInfoForm.tsx`
@@ -132,63 +130,85 @@ This checklist breaks down all features into small, actionable implementation st
 
 ---
 
-## Phase 3: Email Template Builder - Backend
+## Phase 3: Email Template Builder - Backend **REDESIGNED**
 
-### Claude API Integration Setup
-- [ ] Create `lib/utils/claude-api.ts`
-- [ ] Set up Anthropic client with API key
-- [ ] Create function to format template data for Claude
+### Groq API Integration Setup
+- [ ] Update API integration from Claude to Groq (free tier)
+- [ ] Create `lib/utils/groq-api.ts`
+- [ ] Set up Groq client with API key (already done)
+- [ ] Use Llama 3.1 70B model
 - [ ] Add error handling for API calls
 - [ ] Implement retry logic for failed requests
 - [ ] Add request timeout handling
 
-### Template Analysis Logic
-- [ ] Create function to extract template characteristics:
-  - [ ] Layout type (single column, multi-column, etc.)
-  - [ ] Color palette (extract hex codes)
-  - [ ] Typography (fonts, sizes, weights)
-  - [ ] Spacing patterns (padding, margins)
-  - [ ] Image usage (placement, size)
-- [ ] Weight characteristics by user ranking (top = more weight)
-- [ ] Generate "taste profile" summary
+### Smart Preference Analysis Logic
+- [ ] Create function to analyze design philosophy ratings:
+  - [ ] Identify top 3 rated philosophies
+  - [ ] Extract common characteristics from top-rated templates
+  - [ ] Determine color preferences (dark vs light)
+  - [ ] Determine typography style (serif vs sans-serif)
+  - [ ] Determine layout complexity (minimal vs data-heavy)
+  - [ ] Determine imagery usage patterns
+- [ ] Weight by rating scores (higher rated = more influence)
+- [ ] Generate "design taste profile" based on psychology
 
-### Generate Templates API Route
-- [ ] Implement `/api/generate-templates/route.ts`
-- [ ] Accept POST request with ranking data and business info
-- [ ] Analyze ranked templates
-- [ ] Create Claude prompt for template generation:
-  - [ ] Include taste profile
-  - [ ] Include business information
-  - [ ] Include industry-specific requirements
-  - [ ] Request 2-3 template variations
-- [ ] Parse Claude response for HTML templates
+### Generate Templates API Route - **CRITICAL FIXES**
+- [ ] Update `/api/generate-templates/route.ts`
+- [ ] Accept POST request with ratings (not rankings) and business info
+- [ ] Analyze top-rated design philosophies
+- [ ] **FIX:** Apply brand colors to generated templates
+  - [ ] Replace placeholder colors with user's brand colors
+  - [ ] Apply to headers, buttons, accents
+  - [ ] Ensure color contrast compliance
+- [ ] **FIX:** Include logo in generated templates
+  - [ ] Add logo to header section
+  - [ ] Handle missing logo gracefully
+  - [ ] Ensure proper sizing and positioning
+- [ ] **FIX:** Generate industry-specific content
+  - [ ] Windows/Doors: Estimate tables with dimensions, pricing
+  - [ ] HVAC: Service appointment details
+  - [ ] Plumbing: Emergency service breakdown
+  - [ ] Landscaping: Seasonal service schedules
+  - [ ] **NOT generic "Welcome" text**
+- [ ] **FIX:** Ensure mobile responsiveness
+  - [ ] Add media queries to generated templates
+  - [ ] Test responsive breakpoints
+  - [ ] Use proper mobile-first approach
+- [ ] Create improved Groq prompts for realistic scenarios
+- [ ] Parse Groq response for HTML templates
 - [ ] Validate generated HTML
-- [ ] Ensure inline CSS in generated templates
+- [ ] Ensure inline CSS in all generated templates
 - [ ] Return templates as JSON response
-- [ ] Add error handling and logging
+- [ ] Add comprehensive error handling and logging
 
-### Template Preview Component
-- [ ] Create `components/EmailTemplateBuilder/TemplatePreview.tsx`
+### Template Preview Component - **FIX MOBILE VIEW**
+- [ ] Update `components/EmailTemplateBuilder/TemplatePreview.tsx`
 - [ ] Display 2-3 generated templates side-by-side
 - [ ] Add mobile/desktop view toggle
-- [ ] Implement iframe preview for email rendering
+- [ ] **FIX:** Implement proper responsive preview
+  - [ ] Desktop view: 600px width iframe
+  - [ ] Mobile view: 375px width iframe with media queries
+  - [ ] **NOT shrunk desktop view** - use actual responsive breakpoints
+  - [ ] Add media query support to iframe content
 - [ ] Add "Select" button for each template
 - [ ] Show selected template in larger view
 - [ ] Add smooth animations for switching views
 - [ ] Make responsive for mobile (stack vertically)
+- [ ] Test in actual email clients to verify responsiveness
 
 ### Natural Language Editing
 - [ ] Add text input for edit requests
 - [ ] Add "Apply Edit" button
-- [ ] Create edit API call to Claude:
+- [ ] Update edit API call to use Groq (not Claude):
   - [ ] Send current template HTML
   - [ ] Send user's natural language request
-  - [ ] Request modified HTML
+  - [ ] Request modified HTML with preserved inline CSS
 - [ ] Update preview with edited template
 - [ ] Show loading state during edit
 - [ ] Add example edit prompts (placeholder text)
 - [ ] Handle invalid edit requests gracefully
 - [ ] Add undo functionality (keep edit history)
+- [ ] Ensure edits maintain email client compatibility
 
 ---
 

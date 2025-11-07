@@ -34,21 +34,31 @@ This document outlines the major features to be implemented for the Service Pro 
 
 ---
 
-## Phase 2: Email Template Builder (Flagship Feature)
+## Phase 2: Email Template Builder (Flagship Feature) - **REDESIGNED**
 
-### 2.1 Ranking Interface (`/email-builder`)
-- **10 Pre-Designed Templates** - Diverse HTML email templates showcasing different styles
-- **Drag-to-Rank System** - Intuitive drag-and-drop or click-to-rank (1-10)
-- **Smooth Animations** - Animated transitions between ranking states
-- **Progress Indicator** - Visual feedback showing "AI learning your taste"
-- **Visual Feedback** - Glow effects for highly-ranked templates
+### 2.1 Design Philosophy Rating System (`/email-builder`)
+- **8 Design Philosophy Templates** - Each represents a distinct aesthetic approach
+- **1-10 Rating System** - Rate each template on a scale of 1-10 (not drag-and-drop)
+- **Modal Preview** - Click thumbnail to view full-size preview (desktop + mobile side-by-side)
+- **Progress Indicator** - Visual feedback showing "AI learning your style"
+- **Larger Thumbnails** - 300x400px minimum (was too small before)
+
+**8 Design Philosophies:**
+1. **Luxury/Premium** - Dark backgrounds, gold accents, elegant serif fonts
+2. **Tech/Modern** - White, bold sans-serif, single accent color
+3. **Futuristic/AI** - Gradients, neon accents, floating elements
+4. **Warm/Friendly** - Warm colors, rounded corners, approachable fonts
+5. **Professional/Corporate** - Navy blue, structured, formal layout
+6. **Bold/Creative** - Bright colors, asymmetric layouts, large imagery
+7. **Minimalist/Zen** - Whitespace, monochromatic, subtle accents
+8. **Data-Driven/Analytical** - Charts, tables, structured information
 
 **Requirements:**
-- Create 10 diverse, professional email templates
-- Implement drag-and-drop with @dnd-kit
-- Add smooth animations for reordering
-- Show real-time ranking numbers
-- Provide visual hierarchy based on ranking
+- Create 8 distinct design philosophy templates (not generic variations)
+- Implement 1-10 star/slider rating for each template
+- Add modal component for full-size previews
+- Show responsive preview (desktop + mobile) in modal
+- Each template must represent a clear aesthetic direction
 
 ### 2.2 Business Info Collection Form
 **Collected while AI analyzes user preferences in the background**
@@ -73,46 +83,63 @@ This document outlines the major features to be implemented for the Service Pro 
 - **Landscaping:** Seasonal services, maintenance plans
 - **Plumbing:** Emergency services, fixture types
 
-### 2.3 AI Template Generation Backend
+### 2.3 AI Template Generation Backend - **REDESIGNED**
 
 **API Route:** `/api/generate-templates`
 
-**Process:**
-1. **Analyze Rankings** - Parse user's ranking preferences
-2. **Extract Patterns** - Identify layout, color, spacing, typography preferences
-3. **Generate Taste Profile** - Synthesize user's aesthetic preferences
-4. **Create Custom Templates** - Generate 2-3 new HTML email templates
+**Smart Preference Analysis Process:**
+1. **Analyze Ratings** - Identify top 3 rated design philosophies
+2. **Extract Design Patterns** - Determine:
+   - Color preferences (dark vs light backgrounds)
+   - Typography style (serif vs sans-serif, bold vs elegant)
+   - Layout complexity (minimal vs data-heavy)
+   - Imagery usage (text-focused vs image-heavy)
+3. **Generate Taste Profile** - Synthesize aesthetic preferences from design psychology
+4. **Create Custom Templates** - Generate 2-3 templates blending top-rated philosophies
 
-**Template Requirements:**
-- Match user's aesthetic preferences (based on rankings)
-- Include industry-specific components
-- Use inline CSS for email client compatibility
-- Incorporate business name and relevant content
-- Work in Gmail, Outlook, Apple Mail
+**Template Requirements (CRITICAL):**
+- **MUST apply brand colors** - Header, buttons, accents use user's colors
+- **MUST include logo** - Prominently displayed in header
+- **MUST use industry-specific content** - Realistic scenarios (not generic "Welcome")
+- **MUST show proper mobile responsiveness** - True responsive layout with media queries
+- **MUST use inline CSS** - Email client compatibility
+- **MUST match selected tone** - Professional / Friendly / Casual
 
-**Claude API Integration:**
-- Send ranked templates and their characteristics
-- Request analysis of user preferences
+**Industry-Specific Content Examples:**
+- **Windows/Doors:** Estimate table with dimensions, colors, quantities, pricing
+- **HVAC:** Service appointment confirmation with system details
+- **Plumbing:** Emergency service details with pricing breakdown
+- **Landscaping:** Seasonal service schedule with maintenance plan options
+
+**Groq API Integration:**
+- Send top-rated philosophies and their characteristics
+- Provide business info (name, industry, colors, logo, tone)
+- Request templates with industry-appropriate scenarios
 - Generate valid, production-ready HTML email code
 - Ensure email client compatibility
 
-### 2.4 Template Preview & Editing
+### 2.4 Template Preview & Editing - **FIXED**
 
 **Preview Features:**
 - **Side-by-Side Display** - Show 2-3 generated templates
-- **Mobile/Desktop Views** - Toggle between email client sizes
+- **Responsive Preview Modes:**
+  - Desktop View (600px width) - Standard email client
+  - Mobile View (375px width) - True responsive layout with media queries
+  - **NOT** shrunk desktop view - actual responsive breakpoints
 - **Interactive Preview** - Scroll within the email preview
+- **Template Switcher** - Easy navigation between generated templates
 
 **Natural Language Editing:**
-- **Text Input Interface** - "Move the logo to the top" or "Make the header smaller"
-- **Claude API Integration** - Parse natural language requests
+- **Text Input Interface** - "Make the header blue" or "Larger text"
+- **Groq API Integration** - Parse natural language requests
 - **Template Modification** - Update HTML based on user requests
-- **Real-Time Preview** - Show changes immediately
+- **Real-Time Preview** - Show changes immediately in both desktop and mobile views
 
 **Send Test Email:**
 - Button to email the selected template
 - Sends to user's provided email address
 - Professional formatting in actual email clients
+- Success/error feedback with Resend API
 
 ### 2.5 Email Sending API
 
