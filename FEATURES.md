@@ -32,6 +32,77 @@ This document outlines the major features to be implemented for the Service Pro 
 - **Performance** - 60fps on mobile devices
 - **Natural Feel** - Non-jarring, smooth transitions
 
+### 1.5 Small Business Solutions Section
+**Target Audience:** HVAC, Electrical, Plumbing, General Contractors
+
+**Design Inspiration:** Similar to Local HIPAA-Compliant AI section - seamless industry switching, beautiful animations, addresses pain points directly
+
+**Pain Points Addressed:**
+- **Documentation Chaos** - Photos, measurements, estimates scattered everywhere
+- **Fragmented Workflow** - Disconnected proposal → contract → project → invoice → payment process
+- **Communication Breakdown** - Hard to keep 10+ employees and multiple projects organized
+- **Payment Delays** - Customers not paying on time, collection challenges
+- **Competitive Pressure** - Fighting unlicensed workers, need professional image
+- **Scope Changes** - Managing customer requests and change orders mid-project
+
+**Three Integrated Solutions:**
+
+1. **CompanyCam+ (Live Interactive Demo)**
+   - Purpose: Professional photo documentation and project tracking
+   - Features:
+     - Before/after comparison slider with sample project images
+     - Automatic photo organization by project
+     - GPS and timestamp metadata on every photo
+     - Share progress updates with customers instantly
+     - Professional presentation that justifies higher pricing
+   - Implementation: Full working demo integrated from existing codebase
+   - Use Case: "Show homeowners exactly what you're doing, when you're doing it"
+
+2. **ServicePro+ Dashboard (Showcased/Discussed)**
+   - Purpose: Complete workflow management from first contact to final payment
+   - Features:
+     - Unified proposal → estimate → invoice pipeline
+     - Employee task assignment and communication hub
+     - Project timeline tracking
+     - Customer communication history
+     - Payment tracking and reminders
+   - Implementation: Feature showcase with screenshots/descriptions, not full demo
+   - Use Case: "One place for everything - from quote to cash"
+   - Real-world validation: "Already helping a local HVAC business streamline their flow from proposal to invoicing, keeping communication between projects and 10+ employees organized"
+
+3. **AI-Powered Email Templates (Showcased AND Live Demo)**
+   - Purpose: Professional, branded communication with customers
+   - Features:
+     - Appointment confirmations with service details
+     - Estimate/proposal delivery emails
+     - Progress update notifications
+     - Payment reminder emails
+     - Follow-up and review request emails
+   - Implementation: Feature showcase with "Try It Live" button linking to existing /email-builder page
+   - Use Case: "Look professional, get paid faster, get more 5-star reviews"
+
+**Section Structure:**
+- **Industry Selector** - 4 tabs: HVAC, Electrical, Plumbing, General Contractor
+- **Pain Point Headline** - Speaks directly to each industry's struggles
+- **Three Solution Cards** - CompanyCam+ (interactive demo), ServicePro+ (showcase), Email Templates (showcase + live demo link)
+- **CompanyCam+ Demo Area** - Live interactive photo comparison demo
+- **Email Templates Preview** - Mini showcase with "Try It Live" button → /email-builder
+- **Visual Flow Diagram** - Shows how all three solutions work together
+- **CTA Button** - "Start Streamlining Your Business" → leads to consultation
+
+**Animation Requirements:**
+- Smooth transitions between industries (similar to Local AI section)
+- Interactive photo slider for CompanyCam+ demo
+- Fade in/out for solution descriptions
+- Flow diagram animation showing connected workflow
+- GSAP scroll-triggered reveals
+
+**Copy Tone:**
+- Empathetic - "We know running a contracting business is tough"
+- Practical - "Real solutions for real problems"
+- Results-focused - "Get paid faster, work less stressed"
+- No corporate jargon - Speak like a contractor to contractors
+
 ---
 
 ## Phase 2: Email Template Builder (Flagship Feature) - **REDESIGNED**

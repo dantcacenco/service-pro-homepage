@@ -64,6 +64,104 @@ This checklist breaks down all features into small, actionable implementation st
 - [ ] Test on mobile devices
 - [ ] Add loading state for images
 
+### Small Business Solutions Section
+- [ ] Research CompanyCam+ repository code structure
+- [ ] Research ServicePro+ dashboard features and screenshots
+- [ ] Create `components/SmallBusinessSection.tsx` main component
+- [ ] Design industry data structure (HVAC, Electrical, Plumbing, General Contractor)
+- [ ] Write pain point headlines for each industry:
+  - [ ] HVAC: Focus on seasonal rush, emergency calls, customer communication
+  - [ ] Electrical: Focus on code compliance, safety documentation, change orders
+  - [ ] Plumbing: Focus on emergency services, parts tracking, warranty claims
+  - [ ] General Contractor: Focus on subcontractor coordination, timeline management, budget tracking
+- [ ] Create industry selector component (4 tabs with icons)
+- [ ] Implement smooth tab switching animation (Framer Motion)
+- [ ] Add GSAP scroll-triggered entrance animations
+
+### CompanyCam+ Interactive Demo Integration
+- [ ] Create `components/SmallBusinessSection/CompanyCamDemo.tsx`
+- [ ] Source or create sample project photos (before/after):
+  - [ ] HVAC: AC unit replacement, ductwork installation
+  - [ ] Electrical: Panel upgrade, outlet installation
+  - [ ] Plumbing: Water heater replacement, pipe repair
+  - [ ] General Contractor: Kitchen remodel, bathroom renovation
+- [ ] Implement before/after comparison slider component
+- [ ] Add drag interaction for slider (desktop)
+- [ ] Add touch/swipe gestures for slider (mobile)
+- [ ] Display photo metadata (timestamp, GPS coordinates - simulated)
+- [ ] Add smooth transitions when switching industries
+- [ ] Implement "Share with customer" button (visual only)
+- [ ] Add professional overlay UI (project name, contractor info)
+- [ ] Optimize images for web (WebP, lazy loading)
+
+### ServicePro+ Dashboard Showcase
+- [ ] Create `components/SmallBusinessSection/ServiceProShowcase.tsx`
+- [ ] Design workflow diagram showing proposal → estimate → invoice → payment
+- [ ] Create animated flow visualization (GSAP timeline)
+- [ ] Write copy highlighting key features:
+  - [ ] "Unified proposal → estimate → invoice pipeline"
+  - [ ] "Employee task assignment and communication hub"
+  - [ ] "Project timeline tracking"
+  - [ ] "Customer communication history"
+  - [ ] "Payment tracking and reminders"
+- [ ] Add real-world validation callout:
+  - [ ] "Already helping a local HVAC business streamline their flow"
+  - [ ] "Keeps communication between projects and 10+ employees organized"
+- [ ] Create feature cards with icons
+- [ ] Add hover effects for feature cards (desktop)
+- [ ] Make responsive for mobile (stack vertically)
+
+### Email Templates Showcase AND Live Demo
+- [ ] Create `components/SmallBusinessSection/EmailTemplatesShowcase.tsx`
+- [ ] Design email template preview cards
+- [ ] Show 3-5 industry-specific email examples:
+  - [ ] Appointment confirmation with service details
+  - [ ] Estimate/proposal delivery
+  - [ ] Progress update notification
+  - [ ] Payment reminder (friendly but firm)
+  - [ ] Follow-up and review request
+- [ ] Create mini mockups of each email type
+- [ ] Add carousel or grid layout for email previews
+- [ ] Write compelling copy: "Look professional, get paid faster, get more 5-star reviews"
+- [ ] Add prominent "Try It Live" button linking to /email-builder page
+- [ ] Add "Live Demo Available" badge to Email Templates card
+- [ ] Make responsive for mobile
+
+### Section Integration and Polish
+- [ ] Integrate all three components into SmallBusinessSection
+- [ ] Create three-card layout for solutions (CompanyCam+, ServicePro+, Email Templates)
+- [ ] Add "Interactive Demo" badge to CompanyCam+ card
+- [ ] Add "Live Demo Available" badge to Email Templates card
+- [ ] Add smooth scroll animations for section entrance
+- [ ] Implement industry-specific color accents:
+  - [ ] HVAC: Cool blue tones
+  - [ ] Electrical: Amber/yellow safety colors
+  - [ ] Plumbing: Deep blue water tones
+  - [ ] General Contractor: Gray/orange construction colors
+- [ ] Add visual flow diagram showing how three solutions work together
+- [ ] Create CTA button: "Start Streamlining Your Business"
+- [ ] Link CTA to Calendly consultation
+- [ ] Test all animations on mobile
+- [ ] Verify 60fps performance
+- [ ] Test industry switching on touch devices
+
+### Content Writing
+- [ ] Write empathetic, contractor-focused copy
+- [ ] Avoid corporate jargon - use plain language
+- [ ] Focus on pain points and results
+- [ ] Add industry-specific statistics (if available):
+  - [ ] "Contractors spend 15+ hours/week on paperwork"
+  - [ ] "Photo documentation reduces disputes by 70%"
+  - [ ] "Professional emails get paid 2x faster"
+
+### Replace Old Email Templates Section
+- [ ] Remove old ScrollAnimationSection for email templates from homepage
+- [ ] Update `app/page.tsx` to use SmallBusinessSection instead
+- [ ] Ensure Local HIPAA-Compliant AI section remains unchanged
+- [ ] Update section order: Hero → SmallBusinessSection → LocalAISection → CTA
+- [ ] Test page flow and scroll behavior
+- [ ] Verify all links work correctly
+
 ---
 
 ## Phase 2: Email Template Builder - Frontend **REDESIGNED**
@@ -335,6 +433,45 @@ This checklist breaks down all features into small, actionable implementation st
 - [ ] Create 404 page
 - [ ] Add loading screen/splash
 - [ ] Implement page transitions
+
+---
+
+## Phase 6.5: Performance Optimization & Loading Experience
+
+### Lazy Loading Implementation
+- [ ] Implement lazy loading for heavy components (LocalAISection, SmallBusinessSection)
+- [ ] Use React.lazy() and Suspense for code splitting
+- [ ] Add Intersection Observer for triggering component loads as user scrolls
+- [ ] Lazy load images using Next.js Image with loading="lazy"
+- [ ] Defer loading of GSAP animations until components are in viewport
+- [ ] Split large JavaScript bundles by route
+- [ ] Implement dynamic imports for demo components
+
+### Initial Load Optimization
+- [ ] Create ultra-lightweight loading screen/animation
+- [ ] Prioritize above-the-fold content (Hero section)
+- [ ] Defer non-critical CSS and JavaScript
+- [ ] Implement resource hints (preconnect, dns-prefetch) for external resources
+- [ ] Optimize font loading with font-display: swap
+- [ ] Minimize initial JavaScript bundle size
+- [ ] Use server components where possible (Next.js 14)
+
+### Loading Experience
+- [ ] Create lightweight loading text/animation (< 5KB)
+- [ ] Show "Loading..." message while preparing animations
+- [ ] Add skeleton screens for content areas
+- [ ] Implement progressive enhancement strategy
+- [ ] Add loading progress indicator for large sections
+- [ ] Ensure core content visible within 1-2 seconds
+- [ ] Test load times on slow 3G network (< 10 seconds total)
+
+### Background Loading Strategy
+- [ ] Load Hero section immediately (no delay)
+- [ ] Preload next section while user reads Hero
+- [ ] Load sections on scroll with Intersection Observer
+- [ ] Cache loaded components in memory
+- [ ] Prefetch critical resources on page load
+- [ ] Implement service worker for caching (optional)
 
 ---
 
