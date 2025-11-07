@@ -114,7 +114,7 @@ export default function Hero() {
               <div className="absolute inset-0 -z-0 bg-gradient-to-r from-accent to-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </a>
             <a
-              href="#email-builder"
+              href="/email-builder"
               className="rounded-full border-2 border-primary px-8 py-4 text-lg font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
             >
               Try Email Builder

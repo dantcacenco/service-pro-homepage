@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import ScrollAnimationSection from '@/components/ScrollAnimationSection';
+import LocalAISection from '@/components/LocalAISection';
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
           'Send test emails to see exactly how they look',
         ]}
       />
+
+      <LocalAISection />
 
       {/* Placeholder for more sections */}
       <section className="flex min-h-screen items-center justify-center bg-secondary">
