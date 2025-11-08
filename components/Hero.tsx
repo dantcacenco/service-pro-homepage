@@ -86,7 +86,7 @@ export default function Hero() {
           {/* Headline */}
           <h1
             ref={headlineRef}
-            className="mb-6 text-5xl font-bold leading-tight tracking-tight text-text-dark md:text-7xl"
+            className="mb-6 text-4xl font-bold leading-tight tracking-tight text-text-dark md:text-5xl lg:text-6xl"
           >
             Finish Work.{' '}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -97,25 +97,21 @@ export default function Hero() {
           {/* Subheadline */}
           <p
             ref={subheadlineRef}
-            className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-text-light md:text-xl"
+            className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-text-light md:text-lg"
           >
-            Spend less time in the office, more time with your family — our automation handles the chaos. For regulated industries, we keep your data local and HIPAA-compliant. Enterprise-grade tools at small business prices.
+            Spend less time in the office, more time with your family — our automation handles the chaos. For regulated industries, we keep your data local and HIPAA-compliant.
+            <br />
+            <strong>Enterprise-grade tools at small business prices.</strong>
           </p>
 
           {/* CTA Buttons */}
           <div ref={ctaRef} className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
               href="#demos"
-              className="group relative overflow-hidden rounded-full bg-primary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-primary-dark hover:shadow-xl"
+              className="group relative overflow-hidden rounded-full bg-primary px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-primary-dark hover:shadow-xl"
             >
               <span className="relative z-10">See Live Demos</span>
               <div className="absolute inset-0 -z-0 bg-gradient-to-r from-accent to-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </a>
-            <a
-              href="/email-builder"
-              className="rounded-full border-2 border-primary px-8 py-4 text-lg font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-white"
-            >
-              Try Email Builder
             </a>
           </div>
         </div>

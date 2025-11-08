@@ -146,22 +146,22 @@ export default function LocalAISection() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <div className="mb-4 inline-block rounded-full bg-primary/10 px-6 py-2">
-            <span className="text-sm font-semibold text-primary">🔒 Your Data Never Leaves Your Premises</span>
+          <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5">
+            <span className="text-xs md:text-sm font-semibold text-primary">🔒 Your Data Never Leaves Your Premises</span>
           </div>
-          <h2 className="mb-6 text-5xl font-bold text-text-dark">
+          <h2 className="mb-6 text-3xl md:text-4xl font-bold text-text-dark">
             Local HIPAA-Compliant AI
           </h2>
-          <p className="mx-auto max-w-3xl text-xl text-text-light">
+          <p className="mx-auto max-w-3xl text-base md:text-lg text-text-light">
             State-of-the-art AI that runs entirely on your infrastructure.
             No cloud uploads. No data breaches. Complete control.
           </p>
         </motion.div>
 
         {/* Data Flow Visualization */}
-        <div ref={dataFlowRef} className="relative mb-20 overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 p-12">
+        <div ref={dataFlowRef} className="relative mb-20 overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 p-4 md:p-8">
           <div className="mx-auto max-w-4xl">
-            <div className="relative flex items-center justify-between">
+            <div className="relative flex items-center justify-between gap-2 md:gap-0">
               {/* Local Device */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -170,18 +170,18 @@ export default function LocalAISection() {
                 viewport={{ once: true }}
                 className="flex flex-col items-center"
               >
-                <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-accent shadow-2xl">
-                  <span className="text-6xl">💻</span>
+                <div className="mb-2 md:mb-4 flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-accent shadow-lg md:shadow-2xl">
+                  <span className="text-3xl md:text-5xl">💻</span>
                 </div>
-                <p className="text-center font-semibold text-text-dark">Your Device</p>
-                <p className="text-sm text-text-light">On-Premise Server</p>
+                <p className="text-center text-xs md:text-base font-semibold text-text-dark">Your Device</p>
+                <p className="text-xs md:text-sm text-text-light hidden md:block">On-Premise Server</p>
               </motion.div>
 
               {/* Data Flow Animation */}
-              <div className="relative flex-1 px-12">
-                <div className="relative h-2 w-full rounded-full bg-primary/20">
+              <div className="relative flex-1 px-2 md:px-8">
+                <div className="relative h-1 md:h-2 w-full rounded-full bg-primary/20">
                   <motion.div
-                    className="absolute left-0 top-0 h-2 rounded-full bg-gradient-to-r from-primary to-accent"
+                    className="absolute left-0 top-0 h-1 md:h-2 rounded-full bg-gradient-to-r from-primary to-accent"
                     animate={{ width: ['0%', '100%'] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                   />
@@ -191,7 +191,7 @@ export default function LocalAISection() {
                 {[...Array(5)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="data-particle absolute -top-8 h-4 w-4 rounded-full bg-accent"
+                    className="data-particle absolute -top-4 md:-top-8 h-2 w-2 md:h-4 md:w-4 rounded-full bg-accent"
                     style={{ left: `${i * 20}%` }}
                     animate={{
                       y: [0, -20, 0],
@@ -205,8 +205,8 @@ export default function LocalAISection() {
                   />
                 ))}
 
-                <p className="mt-6 text-center text-sm font-semibold text-primary">
-                  ✓ Encrypted • ✓ Local Processing • ✓ Zero Cloud Transfer
+                <p className="mt-4 md:mt-6 text-center text-xs md:text-sm font-semibold text-primary">
+                  ✓ Encrypted • ✓ Local • ✓ Zero Cloud
                 </p>
               </div>
 
@@ -218,11 +218,11 @@ export default function LocalAISection() {
                 viewport={{ once: true }}
                 className="flex flex-col items-center"
               >
-                <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-primary shadow-2xl">
-                  <span className="text-6xl">🗄️</span>
+                <div className="mb-2 md:mb-4 flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-xl md:rounded-2xl bg-gradient-to-br from-accent to-primary shadow-lg md:shadow-2xl">
+                  <span className="text-3xl md:text-5xl">🗄️</span>
                 </div>
-                <p className="text-center font-semibold text-text-dark">Local AI</p>
-                <p className="text-sm text-text-light">State-of-the-Art LLM</p>
+                <p className="text-center text-xs md:text-base font-semibold text-text-dark">Local AI</p>
+                <p className="text-xs md:text-sm text-text-light hidden md:block">State-of-the-Art LLM</p>
               </motion.div>
             </div>
 
@@ -232,17 +232,17 @@ export default function LocalAISection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="mt-12 rounded-xl bg-white p-6 shadow-lg"
+              className="mt-8 md:mt-12 rounded-xl bg-white p-4 md:p-6 shadow-lg"
             >
-              <div className="mb-3 flex items-center gap-2">
-                <span className="text-2xl">💬</span>
-                <span className="font-semibold text-text-dark">Example Query:</span>
+              <div className="mb-2 md:mb-3 flex items-center gap-2">
+                <span className="text-xl md:text-2xl">💬</span>
+                <span className="text-sm md:text-base font-semibold text-text-dark">Example Query:</span>
               </div>
-              <p className="mb-4 text-lg italic text-text-light">
+              <p className="mb-3 md:mb-4 text-sm md:text-base italic text-text-light">
                 "Show me patients with similar symptom patterns to the current case"
               </p>
-              <div className="rounded-lg bg-green-50 p-4">
-                <p className="text-sm font-semibold text-green-800">✓ Processed locally in 2.3 seconds</p>
+              <div className="rounded-lg bg-green-50 p-3 md:p-4">
+                <p className="text-xs md:text-sm font-semibold text-green-800">✓ Processed locally in 2.3 seconds</p>
                 <p className="text-xs text-green-600">No data sent to external servers</p>
               </div>
             </motion.div>
@@ -251,22 +251,22 @@ export default function LocalAISection() {
 
         {/* Industry Use Cases */}
         <div className="industry-grid mb-20">
-          <h3 className="mb-8 text-center text-3xl font-bold text-text-dark">
+          <h3 className="mb-6 md:mb-8 text-center text-2xl md:text-3xl font-bold text-text-dark">
             Trusted by Regulated Industries
           </h3>
 
-          <div className="mb-8 flex flex-wrap justify-center gap-4">
+          <div className="mb-6 md:mb-8 flex flex-wrap justify-center gap-2 md:gap-4">
             {industries.map((industry) => (
               <button
                 key={industry.id}
                 onClick={() => setSelectedIndustry(industry.id)}
-                className={`rounded-full px-6 py-3 font-semibold transition-all ${
+                className={`rounded-full px-4 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold transition-all ${
                   selectedIndustry === industry.id
                     ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg scale-105'
                     : 'bg-white text-text-dark hover:bg-gray-50'
                 }`}
               >
-                <span className="mr-2">{industry.icon}</span>
+                <span className="mr-1 md:mr-2">{industry.icon}</span>
                 {industry.name}
               </button>
             ))}
@@ -280,26 +280,26 @@ export default function LocalAISection() {
             transition={{ duration: 0.5 }}
             className={`mx-auto max-w-4xl rounded-2xl bg-gradient-to-br ${currentIndustry.color} p-1 shadow-2xl`}
           >
-            <div className="rounded-2xl bg-white p-8">
-              <div className="mb-6 flex items-center gap-4">
-                <span className="text-6xl">{currentIndustry.icon}</span>
+            <div className="rounded-2xl bg-white p-4 md:p-8">
+              <div className="mb-4 md:mb-6 flex items-center gap-3 md:gap-4">
+                <span className="text-4xl md:text-6xl">{currentIndustry.icon}</span>
                 <div>
-                  <h4 className="text-2xl font-bold text-text-dark">{currentIndustry.name}</h4>
-                  <p className="text-lg text-text-light">{currentIndustry.tagline}</p>
+                  <h4 className="text-lg md:text-2xl font-bold text-text-dark">{currentIndustry.name}</h4>
+                  <p className="text-sm md:text-base text-text-light">{currentIndustry.tagline}</p>
                 </div>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-3 md:gap-4 md:grid-cols-2">
                 {currentIndustry.useCases.map((useCase, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="flex items-start gap-3 rounded-lg bg-gradient-to-br from-gray-50 to-white p-4"
+                    className="flex items-start gap-2 md:gap-3 rounded-lg bg-gradient-to-br from-gray-50 to-white p-3 md:p-4"
                   >
-                    <span className="text-2xl">✓</span>
-                    <p className="text-text-dark">{useCase}</p>
+                    <span className="text-lg md:text-xl">✓</span>
+                    <p className="text-sm md:text-base text-text-dark">{useCase}</p>
                   </motion.div>
                 ))}
               </div>
@@ -309,11 +309,11 @@ export default function LocalAISection() {
 
         {/* Compliance & Security Badges */}
         <div className="compliance-section">
-          <h3 className="mb-8 text-center text-3xl font-bold text-text-dark">
+          <h3 className="mb-6 md:mb-8 text-center text-2xl md:text-3xl font-bold text-text-dark">
             Enterprise-Grade Security
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {[
               { label: 'HIPAA', icon: '🏥' },
               { label: 'SOC 2', icon: '🔒' },
@@ -327,10 +327,10 @@ export default function LocalAISection() {
                 className="compliance-badge flex flex-col items-center"
                 whileHover={{ scale: 1.1, rotate: 5 }}
               >
-                <div className="mb-2 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-lg">
-                  <span className="text-4xl">{badge.icon}</span>
+                <div className="mb-1 md:mb-2 flex h-16 w-16 md:h-20 md:w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent shadow-lg">
+                  <span className="text-2xl md:text-3xl">{badge.icon}</span>
                 </div>
-                <span className="font-semibold text-text-dark">{badge.label}</span>
+                <span className="text-xs md:text-sm font-semibold text-text-dark">{badge.label}</span>
               </motion.div>
             ))}
           </div>
@@ -342,19 +342,19 @@ export default function LocalAISection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="mt-16 md:mt-20 text-center"
         >
-          <h3 className="mb-4 text-3xl font-bold text-text-dark">
+          <h3 className="mb-3 md:mb-4 text-2xl md:text-3xl font-bold text-text-dark">
             Ready to Keep Your Data Private?
           </h3>
-          <p className="mb-8 text-lg text-text-light">
+          <p className="mb-6 md:mb-8 text-base md:text-lg text-text-light">
             Schedule a consultation to see how local AI can transform your operations
           </p>
           <a
             href="https://calendly.com/volk_productions/new-meeting"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-block rounded-full bg-gradient-to-r from-primary to-accent px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             Schedule a Consultation
           </a>

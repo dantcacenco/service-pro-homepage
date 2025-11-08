@@ -31,9 +31,9 @@ function SolutionCard({ title, description, features, delay, children }: Solutio
       className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all hover:shadow-2xl"
     >
       <div className="mb-4">
-        <h4 className="text-2xl font-bold text-text-dark">{title}</h4>
+        <h4 className="text-xl md:text-2xl font-bold text-text-dark">{title}</h4>
       </div>
-      <p className="mb-6 text-text-light">{description}</p>
+      <p className="mb-6 text-sm md:text-base text-text-light">{description}</p>
       <div className="mb-6 space-y-2 text-sm text-text-light">
         {features.map((feature, index) => (
           <div key={index} className="flex items-center gap-2">
@@ -179,7 +179,7 @@ export default function SmallBusinessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-4 text-4xl font-bold text-text-dark md:text-5xl"
+            className="mb-4 text-3xl font-bold text-text-dark md:text-4xl"
           >
             Built for the Trades
           </motion.h2>
@@ -188,7 +188,7 @@ export default function SmallBusinessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-lg text-text-light"
+            className="mx-auto max-w-2xl text-base md:text-lg text-text-light"
           >
             Real solutions for real problems. No corporate fluff, just tools that help you get the job done and get paid.
           </motion.p>
@@ -233,11 +233,11 @@ export default function SmallBusinessSection() {
           >
             <h3
               ref={headlineRef}
-              className="mb-4 text-3xl font-bold text-text-dark md:text-4xl"
+              className="mb-4 text-2xl font-bold text-text-dark md:text-3xl"
             >
               {activeIndustry.painPointHeadline}
             </h3>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-text-light">
+            <p className="mx-auto max-w-3xl text-base md:text-lg leading-relaxed text-text-light">
               {activeIndustry.painPointSubtext}
             </p>
           </motion.div>
@@ -300,11 +300,11 @@ export default function SmallBusinessSection() {
             href="https://calendly.com/volk_productions/new-meeting"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-full bg-gradient-to-r from-primary to-accent px-10 py-5 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            className="inline-block rounded-full bg-gradient-to-r from-primary to-accent px-8 md:px-10 py-3 md:py-4 text-base md:text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
             Start Streamlining Your Business
           </a>
-          <p className="mt-4 text-sm text-text-light">
+          <p className="mt-4 text-xs md:text-sm text-text-light">
             Free consultation • No sales pressure • Just solutions
           </p>
         </motion.div>
