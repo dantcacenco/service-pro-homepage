@@ -88,9 +88,9 @@ export default function Hero() {
             ref={headlineRef}
             className="mb-6 text-5xl font-bold leading-tight tracking-tight text-text-dark md:text-7xl"
           >
-            Your AI.{' '}
+            Finish Work.{' '}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Your Terms.
+              Go Home.
             </span>
           </h1>
 
@@ -99,9 +99,7 @@ export default function Hero() {
             ref={subheadlineRef}
             className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-text-light md:text-xl"
           >
-            On-premise intelligence for businesses of every size. From local
-            practices to global enterprises, we enhance your workflow—not replace
-            your workers. Less stress, more intelligent help.
+            Spend less time in the office, more time with your family — our automation handles the chaos. For regulated industries, we keep your data local and HIPAA-compliant. Enterprise-grade tools at small business prices.
           </p>
 
           {/* CTA Buttons */}
