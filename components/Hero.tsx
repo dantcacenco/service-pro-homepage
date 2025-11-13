@@ -99,7 +99,7 @@ export default function Hero() {
             ref={subheadlineRef}
             className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-text-light md:text-lg"
           >
-            Spend less time in the office, more time with your family — our automation handles the chaos. For regulated industries, we keep your data local and HIPAA-compliant.
+            Spend less time in the office, more time with your family — our automation handles the chaos.
             <br />
             <strong>Enterprise-grade tools at small business prices.</strong>
           </p>

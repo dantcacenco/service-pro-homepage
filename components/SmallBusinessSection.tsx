@@ -126,7 +126,7 @@ const industries: Industry[] = [
   },
   {
     id: 'contractor',
-    name: 'General Contractor',
+    name: 'GC',
     icon: '🏗️',
     painPointHeadline: 'Juggling subs, timelines, and budgets is exhausting?',
     painPointSubtext:
@@ -196,12 +196,12 @@ export default function SmallBusinessSection() {
 
         {/* Industry Selector Tabs */}
         <div className="mb-12 flex justify-center">
-          <div className="inline-flex flex-wrap justify-center gap-3 rounded-full bg-white p-2 shadow-lg">
+          <div className="inline-flex flex-wrap justify-center gap-2 rounded-full bg-white p-1.5 md:p-2 shadow-lg">
             {industries.map((industry) => (
               <button
                 key={industry.id}
                 onClick={() => handleIndustryChange(industry)}
-                className={`group relative flex items-center gap-2 rounded-full px-6 py-3 font-semibold transition-all duration-300 ${
+                className={`group relative flex items-center gap-1.5 md:gap-2 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 ${
                   activeIndustry.id === industry.id
                     ? 'bg-gradient-to-r text-white shadow-md'
                     : 'text-text-light hover:bg-secondary'
@@ -214,7 +214,7 @@ export default function SmallBusinessSection() {
                     : undefined
                 }
               >
-                <span className="text-2xl">{industry.icon}</span>
+                <span className="text-lg md:text-2xl">{industry.icon}</span>
                 <span>{industry.name}</span>
               </button>
             ))}
