@@ -1,6 +1,5 @@
 import Hero from '@/components/Hero';
 import SmallBusinessSection from '@/components/SmallBusinessSection';
-import LocalAISection from '@/components/LocalAISection';
 
 export default function Home() {
   return (
@@ -8,8 +7,6 @@ export default function Home() {
       <Hero />
 
       <SmallBusinessSection />
-
-      <LocalAISection />
     </main>
   );
 }
