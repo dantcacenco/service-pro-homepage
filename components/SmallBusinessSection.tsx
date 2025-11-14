@@ -189,15 +189,7 @@ export default function SmallBusinessSection() {
 
         {/* Industry Selector Carousel */}
         <div className="mb-12 flex justify-center items-center overflow-hidden px-4">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={activeIndustry.id}
-              initial={{ x: slideDirection === 'right' ? 100 : -100 }}
-              animate={{ x: 0 }}
-              exit={{ x: slideDirection === 'right' ? -100 : 100 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full"
-            >
+          <div className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full">
               {/* Previous item (left side) */}
               <button
                 onClick={() => {
@@ -232,14 +224,29 @@ export default function SmallBusinessSection() {
               </button>
 
               {/* Active item (center) */}
-              <div
-                className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r shadow-lg"
-                style={{
-                  backgroundImage: `linear-gradient(to right, ${activeIndustry.colorAccent}, ${activeIndustry.colorAccent}dd)`,
-                }}
-              >
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.div
+                  key={activeIndustry.id}
+                  initial={{ x: slideDirection === 'right' ? 200 : -200, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: slideDirection === 'right' ? -200 : 200, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r shadow-lg absolute"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, ${activeIndustry.colorAccent}, ${activeIndustry.colorAccent}dd)`,
+                  }}
+                >
+                  <span className="text-3xl md:text-4xl">{activeIndustry.icon}</span>
+                  <span className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+                    {activeIndustry.name}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Invisible spacer to maintain layout */}
+              <div className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full opacity-0 pointer-events-none">
                 <span className="text-3xl md:text-4xl">{activeIndustry.icon}</span>
-                <span className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+                <span className="text-2xl md:text-3xl font-bold whitespace-nowrap">
                   {activeIndustry.name}
                 </span>
               </div>
@@ -266,8 +273,7 @@ export default function SmallBusinessSection() {
                   {industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].name}
                 </span>
               </button>
-            </motion.div>
-          </AnimatePresence>
+            </div>
         </div>
 
         {/* Pain Point Headline */}
