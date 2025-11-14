@@ -183,41 +183,57 @@ export default function SmallBusinessSection() {
           >
             Built for the Trades
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-base md:text-lg text-text-light"
-          >
-            Real solutions for real problems. No corporate fluff, just tools that help you get the job done and get paid.
-          </motion.p>
         </div>
 
-        {/* Industry Selector Tabs */}
-        <div className="mb-12 flex justify-center px-2">
-          <div className="inline-flex flex-wrap justify-center gap-1.5 md:gap-2 rounded-full bg-white p-1 md:p-2 shadow-lg max-w-full">
-            {industries.map((industry) => (
-              <button
-                key={industry.id}
-                onClick={() => handleIndustryChange(industry)}
-                className={`group relative flex items-center gap-1 sm:gap-1.5 md:gap-2 rounded-full px-2 sm:px-3 md:px-6 py-1.5 sm:py-2 md:py-3 text-[10px] sm:text-sm md:text-base font-semibold transition-all duration-300 ${
-                  activeIndustry.id === industry.id
-                    ? 'bg-gradient-to-r text-white shadow-md'
-                    : 'text-text-light hover:bg-secondary'
-                }`}
-                style={
-                  activeIndustry.id === industry.id
-                    ? {
-                        backgroundImage: `linear-gradient(to right, ${industry.colorAccent}, ${industry.colorAccent}dd)`,
-                      }
-                    : undefined
-                }
-              >
-                <span className="text-sm sm:text-lg md:text-2xl">{industry.icon}</span>
-                <span className="whitespace-nowrap">{industry.name}</span>
-              </button>
-            ))}
+        {/* Industry Selector Carousel */}
+        <div className="mb-12 flex justify-center items-center overflow-hidden px-4">
+          <div className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full">
+            {/* Previous item (left side) */}
+            <button
+              onClick={() => {
+                const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
+                const prevIndex = currentIndex === 0 ? industries.length - 1 : currentIndex - 1;
+                handleIndustryChange(industries[prevIndex]);
+              }}
+              className="flex items-center gap-2 opacity-50 hover:opacity-70 transition-all cursor-pointer text-text-light"
+            >
+              <span className="text-xl md:text-2xl">{industries[(industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) % industries.length].icon}</span>
+              <span className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px]">
+                {industries[(industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) % industries.length].name}
+              </span>
+            </button>
+
+            {/* Active item (center) */}
+            <motion.div
+              key={activeIndustry.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r shadow-lg"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${activeIndustry.colorAccent}, ${activeIndustry.colorAccent}dd)`,
+              }}
+            >
+              <span className="text-3xl md:text-4xl">{activeIndustry.icon}</span>
+              <span className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+                {activeIndustry.name}
+              </span>
+            </motion.div>
+
+            {/* Next item (right side) */}
+            <button
+              onClick={() => {
+                const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
+                const nextIndex = (currentIndex + 1) % industries.length;
+                handleIndustryChange(industries[nextIndex]);
+              }}
+              className="flex items-center gap-2 opacity-50 hover:opacity-70 transition-all cursor-pointer text-text-light"
+            >
+              <span className="text-xl md:text-2xl">{industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].icon}</span>
+              <span className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px]">
+                {industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].name}
+              </span>
+            </button>
           </div>
         </div>
 
