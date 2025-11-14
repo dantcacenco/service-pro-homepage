@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import SmallBusinessSection from '@/components/SmallBusinessSection';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
 
 export default function Home() {
   return (
@@ -7,6 +8,8 @@ export default function Home() {
       <Hero />
 
       <SmallBusinessSection />
+
+      <CaseStudiesSection />
     </main>
   );
 }
