@@ -73,9 +73,20 @@ export default function CaseStudiesSection() {
   const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
   const [centerOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
+  // Check for mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === containerRef.current || e.target === orbitRef.current) {
@@ -138,7 +149,8 @@ export default function CaseStudiesSection() {
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 200;
+    // Smaller radius on mobile
+    const radius = isMobile ? 120 : 200;
     const radian = (angle * Math.PI) / 180;
 
     const x = radius * Math.cos(radian) + centerOffset.x;
@@ -147,7 +159,7 @@ export default function CaseStudiesSection() {
     const zIndex = Math.round(100 + 50 * Math.cos(radian));
     const opacity = Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
 
-    return { x, y, angle, zIndex, opacity };
+    return { x, y, angle, zIndex, opacity, radian };
   };
 
   const getRelatedItems = (itemId: number): number[] => {
@@ -189,7 +201,7 @@ export default function CaseStudiesSection() {
 
         {/* Radial Orbital Timeline */}
         <div
-          className="w-full h-[600px] md:h-[700px] flex flex-col items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-accent/5 to-secondary"
+          className="w-full h-[500px] md:h-[700px] flex flex-col items-center justify-center overflow-visible rounded-2xl bg-gradient-to-br from-primary/5 via-accent/5 to-secondary"
           ref={containerRef}
           onClick={handleContainerClick}
         >
@@ -203,17 +215,17 @@ export default function CaseStudiesSection() {
               }}
             >
               {/* Center Core */}
-              <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent animate-pulse flex items-center justify-center z-10">
-                <div className="absolute w-20 h-20 rounded-full border border-primary/20 animate-ping opacity-70"></div>
+              <div className="absolute w-12 md:w-16 h-12 md:h-16 rounded-full bg-gradient-to-br from-primary to-accent animate-pulse flex items-center justify-center z-10">
+                <div className="absolute w-16 md:w-20 h-16 md:h-20 rounded-full border border-primary/20 animate-ping opacity-70"></div>
                 <div
-                  className="absolute w-24 h-24 rounded-full border border-accent/10 animate-ping opacity-50"
+                  className="absolute w-20 md:w-24 h-20 md:h-24 rounded-full border border-accent/10 animate-ping opacity-50"
                   style={{ animationDelay: '0.5s' }}
                 ></div>
-                <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
+                <div className="w-6 md:w-8 h-6 md:h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
               </div>
 
               {/* Orbit Ring */}
-              <div className="absolute w-96 h-96 rounded-full border border-primary/10"></div>
+              <div className="absolute w-60 h-60 md:w-96 md:h-96 rounded-full border border-primary/10"></div>
 
               {/* Orbital Nodes */}
               {caseStudiesData.map((item, index) => {
@@ -259,7 +271,7 @@ export default function CaseStudiesSection() {
                     {/* Node Circle */}
                     <div
                       className={`
-                      w-10 h-10 rounded-full flex items-center justify-center
+                      w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center
                       ${
                         isExpanded
                           ? 'bg-primary text-white'
@@ -276,19 +288,19 @@ export default function CaseStudiesSection() {
                           : 'border-primary/40'
                       }
                       transition-all duration-300 transform
-                      ${isExpanded ? 'scale-150' : ''}
+                      ${isExpanded ? 'scale-125 md:scale-150' : ''}
                     `}
                     >
-                      <Icon size={16} />
+                      <Icon size={14} className="md:w-4 md:h-4" />
                     </div>
 
                     {/* Node Label */}
                     <div
                       className={`
-                      absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap
-                      text-xs font-semibold tracking-wider
+                      absolute top-10 md:top-12 left-1/2 -translate-x-1/2 whitespace-nowrap
+                      text-[10px] md:text-xs font-semibold tracking-wider
                       transition-all duration-300
-                      ${isExpanded ? 'text-text-dark scale-125' : 'text-text-light'}
+                      ${isExpanded ? 'opacity-0 md:opacity-100 text-text-dark scale-125' : 'text-text-light'}
                     `}
                     >
                       {item.title}
@@ -296,8 +308,23 @@ export default function CaseStudiesSection() {
 
                     {/* Expanded Card */}
                     {isExpanded && (
-                      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-64 md:w-80 bg-white/95 backdrop-blur-lg border-2 border-primary/30 rounded-xl shadow-2xl shadow-primary/10 overflow-visible">
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-primary/50"></div>
+                      <div
+                        className="absolute left-1/2 -translate-x-1/2 w-72 md:w-80 bg-white/95 backdrop-blur-lg border-2 border-primary/30 rounded-xl shadow-2xl shadow-primary/10 overflow-visible max-h-[400px] md:max-h-none overflow-y-auto"
+                        style={{
+                          // Position card above if node is in bottom half, below if in top half
+                          top: position.radian > Math.PI / 2 && position.radian < (3 * Math.PI) / 2 ? 'auto' : '60px',
+                          bottom:
+                            position.radian > Math.PI / 2 && position.radian < (3 * Math.PI) / 2 ? '60px' : 'auto',
+                        }}
+                      >
+                        <div
+                          className="absolute left-1/2 -translate-x-1/2 w-px h-3 bg-primary/50"
+                          style={{
+                            top: position.radian > Math.PI / 2 && position.radian < (3 * Math.PI) / 2 ? 'auto' : '-3px',
+                            bottom:
+                              position.radian > Math.PI / 2 && position.radian < (3 * Math.PI) / 2 ? '-3px' : 'auto',
+                          }}
+                        ></div>
 
                         {/* Card Header */}
                         <div className="p-4 pb-2">

@@ -195,13 +195,13 @@ export default function SmallBusinessSection() {
         </div>
 
         {/* Industry Selector Tabs */}
-        <div className="mb-12 flex justify-center">
-          <div className="inline-flex flex-wrap justify-center gap-2 rounded-full bg-white p-1.5 md:p-2 shadow-lg">
+        <div className="mb-12 flex justify-center px-2">
+          <div className="inline-flex flex-wrap justify-center gap-1.5 md:gap-2 rounded-full bg-white p-1 md:p-2 shadow-lg max-w-full">
             {industries.map((industry) => (
               <button
                 key={industry.id}
                 onClick={() => handleIndustryChange(industry)}
-                className={`group relative flex items-center gap-1.5 md:gap-2 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold transition-all duration-300 ${
+                className={`group relative flex items-center gap-1 sm:gap-1.5 md:gap-2 rounded-full px-2 sm:px-3 md:px-6 py-1.5 sm:py-2 md:py-3 text-[10px] sm:text-sm md:text-base font-semibold transition-all duration-300 ${
                   activeIndustry.id === industry.id
                     ? 'bg-gradient-to-r text-white shadow-md'
                     : 'text-text-light hover:bg-secondary'
@@ -214,8 +214,8 @@ export default function SmallBusinessSection() {
                     : undefined
                 }
               >
-                <span className="text-lg md:text-2xl">{industry.icon}</span>
-                <span>{industry.name}</span>
+                <span className="text-sm sm:text-lg md:text-2xl">{industry.icon}</span>
+                <span className="whitespace-nowrap">{industry.name}</span>
               </button>
             ))}
           </div>
