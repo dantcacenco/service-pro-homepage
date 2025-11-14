@@ -139,6 +139,7 @@ const industries: Industry[] = [
 
 export default function SmallBusinessSection() {
   const [activeIndustry, setActiveIndustry] = useState<Industry>(industries[0]);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
 
@@ -161,7 +162,8 @@ export default function SmallBusinessSection() {
     return () => ctx.revert();
   }, []);
 
-  const handleIndustryChange = (industry: Industry) => {
+  const handleIndustryChange = (industry: Industry, direction: 'left' | 'right') => {
+    setSlideDirection(direction);
     setActiveIndustry(industry);
   };
 
@@ -187,54 +189,85 @@ export default function SmallBusinessSection() {
 
         {/* Industry Selector Carousel */}
         <div className="mb-12 flex justify-center items-center overflow-hidden px-4">
-          <div className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full">
-            {/* Previous item (left side) */}
-            <button
-              onClick={() => {
-                const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
-                const prevIndex = currentIndex === 0 ? industries.length - 1 : currentIndex - 1;
-                handleIndustryChange(industries[prevIndex]);
-              }}
-              className="flex items-center gap-2 opacity-50 hover:opacity-70 transition-all cursor-pointer text-text-light"
-            >
-              <span className="text-xl md:text-2xl">{industries[(industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) % industries.length].icon}</span>
-              <span className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px]">
-                {industries[(industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) % industries.length].name}
-              </span>
-            </button>
-
-            {/* Active item (center) */}
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeIndustry.id}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r shadow-lg"
-              style={{
-                backgroundImage: `linear-gradient(to right, ${activeIndustry.colorAccent}, ${activeIndustry.colorAccent}dd)`,
-              }}
+              initial={{ x: slideDirection === 'right' ? 100 : -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: slideDirection === 'right' ? -100 : 100, opacity: 0 }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full"
             >
-              <span className="text-3xl md:text-4xl">{activeIndustry.icon}</span>
-              <span className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
-                {activeIndustry.name}
-              </span>
-            </motion.div>
+              {/* Previous item (left side) */}
+              <button
+                onClick={() => {
+                  const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
+                  const prevIndex = currentIndex === 0 ? industries.length - 1 : currentIndex - 1;
+                  handleIndustryChange(industries[prevIndex], 'left');
+                }}
+                className="flex items-center gap-2 hover:opacity-70 transition-all cursor-pointer text-text-light relative"
+              >
+                <span className="text-xl md:text-2xl">
+                  {
+                    industries[
+                      (industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) %
+                        industries.length
+                    ].icon
+                  }
+                </span>
+                <span
+                  className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px] relative"
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,0.5), rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.2), rgba(0,0,0,0.1), rgba(0,0,0,0))',
+                    maskImage: 'linear-gradient(to left, rgba(0,0,0,0.5), rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.2), rgba(0,0,0,0.1), rgba(0,0,0,0))',
+                  }}
+                >
+                  {
+                    industries[
+                      (industries.findIndex((i) => i.id === activeIndustry.id) - 1 + industries.length) %
+                        industries.length
+                    ].name
+                  }
+                </span>
+              </button>
 
-            {/* Next item (right side) */}
-            <button
-              onClick={() => {
-                const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
-                const nextIndex = (currentIndex + 1) % industries.length;
-                handleIndustryChange(industries[nextIndex]);
-              }}
-              className="flex items-center gap-2 opacity-50 hover:opacity-70 transition-all cursor-pointer text-text-light"
-            >
-              <span className="text-xl md:text-2xl">{industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].icon}</span>
-              <span className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px]">
-                {industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].name}
-              </span>
-            </button>
-          </div>
+              {/* Active item (center) */}
+              <div
+                className="flex items-center gap-3 md:gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full bg-gradient-to-r shadow-lg"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${activeIndustry.colorAccent}, ${activeIndustry.colorAccent}dd)`,
+                }}
+              >
+                <span className="text-3xl md:text-4xl">{activeIndustry.icon}</span>
+                <span className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+                  {activeIndustry.name}
+                </span>
+              </div>
+
+              {/* Next item (right side) */}
+              <button
+                onClick={() => {
+                  const currentIndex = industries.findIndex((i) => i.id === activeIndustry.id);
+                  const nextIndex = (currentIndex + 1) % industries.length;
+                  handleIndustryChange(industries[nextIndex], 'right');
+                }}
+                className="flex items-center gap-2 hover:opacity-70 transition-all cursor-pointer text-text-light relative"
+              >
+                <span className="text-xl md:text-2xl">
+                  {industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].icon}
+                </span>
+                <span
+                  className="text-sm md:text-base font-medium truncate max-w-[60px] md:max-w-[80px] relative"
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.2), rgba(0,0,0,0.1), rgba(0,0,0,0))',
+                    maskImage: 'linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.4), rgba(0,0,0,0.3), rgba(0,0,0,0.2), rgba(0,0,0,0.1), rgba(0,0,0,0))',
+                  }}
+                >
+                  {industries[(industries.findIndex((i) => i.id === activeIndustry.id) + 1) % industries.length].name}
+                </span>
+              </button>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Pain Point Headline */}
