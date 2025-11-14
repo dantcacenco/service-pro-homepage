@@ -192,10 +192,10 @@ export default function SmallBusinessSection() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeIndustry.id}
-              initial={{ x: slideDirection === 'right' ? 100 : -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: slideDirection === 'right' ? -100 : 100, opacity: 0 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              initial={{ x: slideDirection === 'right' ? 100 : -100 }}
+              animate={{ x: 0 }}
+              exit={{ x: slideDirection === 'right' ? -100 : 100 }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
               className="relative flex items-center justify-center gap-4 md:gap-8 max-w-full"
             >
               {/* Previous item (left side) */}
