@@ -4,24 +4,20 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import CompanyCamMiniDemo from './SmallBusinessSection/CompanyCamMiniDemo';
-import ServiceProMiniDemo from './SmallBusinessSection/ServiceProMiniDemo';
-import EmailTemplatesMiniDemo from './SmallBusinessSection/EmailTemplatesMiniDemo';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Solution Card Component with Dropdown
+// Solution Card Component
 interface SolutionCardProps {
   title: string;
   description: string;
   features: string[];
   delay: number;
-  children: React.ReactNode;
+  demoUrl?: string;
+  children?: React.ReactNode;
 }
 
-function SolutionCard({ title, description, features, delay, children }: SolutionCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+function SolutionCard({ title, description, features, delay, demoUrl }: SolutionCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -43,38 +39,25 @@ function SolutionCard({ title, description, features, delay, children }: Solutio
         ))}
       </div>
 
-      {/* See Demo Button */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="group flex w-full items-center justify-between rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 px-4 py-3 font-semibold text-primary transition-all hover:from-primary/20 hover:to-accent/20"
-      >
-        <span>{isExpanded ? 'Hide Demo' : 'See Demo'}</span>
-        <motion.svg
-          animate={{ rotate: isExpanded ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {/* See Demo Button - Links to External Demo */}
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-4 py-3 font-semibold text-white transition-all hover:shadow-lg hover:scale-105"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </motion.svg>
-      </button>
-
-      {/* Collapsible Demo Area */}
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="overflow-hidden"
+          <span>See Live Demo</span>
+          <svg
+            className="h-5 w-5 transition-transform group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <div className="mt-6 rounded-xl bg-secondary/50 p-4">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      )}
     </motion.div>
   );
 }
@@ -95,9 +78,9 @@ const industries: Industry[] = [
     id: 'hvac',
     name: 'HVAC',
     icon: '❄️',
-    painPointHeadline: 'Drowning in service calls, buried in paperwork?',
+    painPointHeadline: '',
     painPointSubtext:
-      'Between emergency calls, seasonal rushes, and keeping customers updated, you barely have time to run your business. Let alone keep track of photos, estimates, and invoices.',
+      'Drowning in service calls, buried in paperwork? Between emergency calls, seasonal rushes, and keeping customers updated, you barely have time to run your business. Let alone keep track of photos, estimates, and invoices.',
     colorAccent: '#3B82F6', // Cool blue
     gradientFrom: 'from-blue-500',
     gradientTo: 'to-cyan-500',
@@ -106,9 +89,9 @@ const industries: Industry[] = [
     id: 'electrical',
     name: 'Electrical',
     icon: '⚡',
-    painPointHeadline: 'Code compliance, safety docs, and change orders overwhelming you?',
+    painPointHeadline: '',
     painPointSubtext:
-      'Electrical work demands precision documentation. One missed photo or unsigned change order can cost you thousands. You need systems that work as reliably as your installations.',
+      'Code compliance, safety docs, and change orders overwhelming you? Electrical work demands precision documentation. One missed photo or unsigned change order can cost you thousands. You need systems that work as reliably as your installations.',
     colorAccent: '#F59E0B', // Amber
     gradientFrom: 'from-amber-500',
     gradientTo: 'to-yellow-500',
@@ -117,9 +100,9 @@ const industries: Industry[] = [
     id: 'plumbing',
     name: 'Plumbing',
     icon: '🔧',
-    painPointHeadline: 'Emergency calls at 2am, warranty claims, parts tracking chaos?',
+    painPointHeadline: '',
     painPointSubtext:
-      'When pipes burst, customers panic. But tracking which parts you used, documenting the job, and following up for payment? That shouldn\'t keep you up at night too.',
+      'Emergency calls at 2am, warranty claims, parts tracking chaos? When pipes burst, customers panic. But tracking which parts you used, documenting the job, and following up for payment? That shouldn\'t keep you up at night too.',
     colorAccent: '#0EA5E9', // Deep blue
     gradientFrom: 'from-blue-600',
     gradientTo: 'to-cyan-600',
@@ -128,9 +111,9 @@ const industries: Industry[] = [
     id: 'contractor',
     name: 'GC',
     icon: '🏗️',
-    painPointHeadline: 'Juggling subs, timelines, and budgets is exhausting?',
+    painPointHeadline: '',
     painPointSubtext:
-      'Coordinating 5 different trades, keeping homeowners happy, chasing payments, and staying on budget. You\'re managing a small army, but your "system" is scattered across texts, emails, and sticky notes.',
+      'Juggling subs, timelines, and budgets is exhausting? Coordinating 5 different trades, keeping homeowners happy, chasing payments, and staying on budget. You\'re managing a small army, but your "system" is scattered across texts, emails, and sticky notes.',
     colorAccent: '#EF4444', // Construction orange-red
     gradientFrom: 'from-orange-500',
     gradientTo: 'to-red-500',
@@ -276,7 +259,7 @@ export default function SmallBusinessSection() {
             </div>
         </div>
 
-        {/* Pain Point Headline */}
+        {/* Pain Point Text */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndustry.id}
@@ -286,61 +269,27 @@ export default function SmallBusinessSection() {
             transition={{ duration: 0.4 }}
             className="mb-16 text-center"
           >
-            <h3
-              ref={headlineRef}
-              className="mb-4 text-2xl font-bold text-text-dark md:text-3xl"
-            >
-              {activeIndustry.painPointHeadline}
-            </h3>
             <p className="mx-auto max-w-3xl text-base md:text-lg leading-relaxed text-text-light">
               {activeIndustry.painPointSubtext}
             </p>
           </motion.div>
         </AnimatePresence>
 
-        {/* Three Solution Cards */}
-        <div className="mb-16 grid gap-8 md:grid-cols-3">
-          {/* CompanyCam+ Card */}
-          <SolutionCard
-            title="CompanyCam+"
-            description="Show the hidden quality work that justifies your premium pricing. Track 5, 10+ photos per location over time, perfectly aligned."
-            features={[
-              'Timeline slider with photos from different dates',
-              'Transparent overlay for perfect alignment',
-              'Solves 100-500+ photo chaos problem',
-            ]}
-            delay={0.1}
-          >
-            <CompanyCamMiniDemo activeIndustry={activeIndustry} />
-          </SolutionCard>
-
-          {/* ServicePro+ Card */}
-          <SolutionCard
-            title="ServicePro+ Dashboard"
-            description="One place for everything - from quote to cash. Already helping a local HVAC business keep 10+ employees organized."
-            features={[
-              'Proposal → invoice pipeline',
-              'Employee coordination hub',
-              'Project & payment tracking',
-            ]}
-            delay={0.2}
-          >
-            <ServiceProMiniDemo />
-          </SolutionCard>
-
-          {/* Email Templates Card */}
-          <SolutionCard
-            title="AI-Powered Email Templates"
-            description="Look professional, get paid faster, get more 5-star reviews. Branded emails that match your business."
-            features={[
-              'Appointment confirmations',
-              'Estimates & invoices',
-              'Payment reminders & follow-ups',
-            ]}
-            delay={0.3}
-          >
-            <EmailTemplatesMiniDemo activeIndustry={activeIndustry} />
-          </SolutionCard>
+        {/* ServicePro+ Card - Centered */}
+        <div className="mb-16 flex justify-center">
+          <div className="w-full max-w-2xl">
+            <SolutionCard
+              title="ServicePro+ Dashboard"
+              description="One place for everything - from quote to cash. Already helping a local HVAC business keep 10+ employees organized."
+              features={[
+                'Proposal → invoice pipeline',
+                'Employee coordination hub',
+                'Project & payment tracking',
+              ]}
+              delay={0.2}
+              demoUrl="https://demo.service-pro.app"
+            />
+          </div>
         </div>
 
         {/* CTA Button */}
