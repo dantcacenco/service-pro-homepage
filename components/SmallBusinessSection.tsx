@@ -287,7 +287,7 @@ export default function SmallBusinessSection() {
                 'Project & payment tracking',
               ]}
               delay={0.2}
-              demoUrl="https://demo.service-pro.app"
+              demoUrl="/demo"
             />
           </div>
         </div>
